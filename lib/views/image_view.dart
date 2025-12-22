@@ -8,16 +8,29 @@
 //       ]
 
 import 'package:flutter/material.dart';
+import 'package:image_annotation/core/app_strings.dart';
 
 class ImageView extends StatelessWidget {
-  const ImageView({super.key});
+  final String imagePath;
+
+  const ImageView({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Image View'), centerTitle: false),
-      body: const Center(
-        child: Text('Full Screen Image View with Annotation Options'),
+      appBar: AppBar(
+        title: const Text(AppStrings.imageViewTitle),
+        centerTitle: false,
+      ),
+      body: Container(
+        color: Colors.black,
+        alignment: Alignment.center,
+        child: Hero(
+          tag: imagePath,
+          child: InteractiveViewer(
+            child: Image.asset(imagePath, fit: BoxFit.cover),
+          ),
+        ),
       ),
     );
   }
