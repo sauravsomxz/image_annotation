@@ -9,4 +9,6 @@ class AppStrings {
       "Cambrian Bioworks: Assignment - Image Annotation";
 
   static const String imageAnnotation = "Image Annotation";
+
+  static const String imageViewTitle = "Image View";
 }
