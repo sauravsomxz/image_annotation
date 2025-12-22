@@ -1,6 +1,13 @@
+// @author [Sourav Ranjan Maharana]
+// @email [saurav.maharana07@gmail.com]
+// @create date 15:24:40 2025-12-22
+// @modify date 15:24:40 2025-12-22
+// @desc [File holds the UI for Home View; For now it shows a grid of images]
+
 import 'package:flutter/material.dart';
 import 'package:image_annotation/core/app_image_paths.dart';
 import 'package:image_annotation/core/app_strings.dart';
+import 'package:image_annotation/views/image_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -22,9 +29,10 @@ class HomeView extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () {
-              // Navigate to annotation screen later
-            },
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (context) => ImageView()),
+            ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: Image.asset(
