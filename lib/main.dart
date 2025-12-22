@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_annotation/core/app_strings.dart';
 import 'package:image_annotation/views/home_view.dart';
@@ -11,6 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: AppStrings.appName, home: HomeView());
+    return MaterialApp(
+      title: AppStrings.appName,
+      home: HomeView(),
+      debugShowCheckedModeBanner: kReleaseMode ? false : true,
+    );
   }
 }
