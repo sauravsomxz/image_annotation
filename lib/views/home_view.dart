@@ -28,16 +28,19 @@ class HomeView extends StatelessWidget {
           crossAxisSpacing: 8,
         ),
         itemBuilder: (context, index) {
+          final String imgPath = AppImagePaths.listOfImages[index];
           return GestureDetector(
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute<void>(builder: (context) => ImageView()),
+              MaterialPageRoute<void>(
+                builder: (context) => ImageView(imagePath: imgPath),
+              ),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
-              child: Image.asset(
-                AppImagePaths.listOfImages[index],
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: imgPath,
+                child: Image.asset(imgPath, fit: BoxFit.cover),
               ),
             ),
           );
