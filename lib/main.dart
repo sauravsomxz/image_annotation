@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_annotation/core/app_strings.dart';
-import 'package:image_annotation/views/home_view.dart';
+import 'package:image_annotation/views/home/home_view.dart';
 
 void main() {
   runApp(const MyApp());
