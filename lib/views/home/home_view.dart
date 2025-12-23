@@ -7,7 +7,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_annotation/core/app_image_paths.dart';
 import 'package:image_annotation/core/app_strings.dart';
-import 'package:image_annotation/views/image_view.dart';
+import 'package:image_annotation/views/image_viewer/image_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
