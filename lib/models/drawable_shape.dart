@@ -5,7 +5,8 @@
 
 import 'package:flutter/material.dart';
 
-/// Base class for drawn shapes
+/// Base class for all annotation shapes.
+/// Stores color and stroke width for rendering.
 abstract class DrawableShape {
   final Color color;
   final double strokeWidth;
@@ -13,7 +14,9 @@ abstract class DrawableShape {
   DrawableShape({required this.color, required this.strokeWidth});
 }
 
-/// Circle shape for drawing
+/// Represents a circle annotation.
+/// [center]: Center of the circle (in image coordinates)
+/// [radius]: Radius of the circle (in image coordinates)
 class CircleShape extends DrawableShape {
   final Offset center;
   final double radius;
@@ -24,26 +27,11 @@ class CircleShape extends DrawableShape {
     required super.color,
     required super.strokeWidth,
   });
-
-  /// Create a circle from start and current points (drag positions)
-  factory CircleShape.fromDragPoints(
-    Offset start,
-    Offset current, {
-    Color color = Colors.blue,
-    double strokeWidth = 2.0,
-  }) {
-    final center = start;
-    final radius = (current - start).distance;
-    return CircleShape(
-      center: center,
-      radius: radius,
-      color: color,
-      strokeWidth: strokeWidth,
-    );
-  }
 }
 
-/// Rectangle shape for drawing
+/// Represents a rectangle annotation.
+/// [topLeft]: Top-left corner (in image coordinates)
+/// [bottomRight]: Bottom-right corner (in image coordinates)
 class RectangleShape extends DrawableShape {
   final Offset topLeft;
   final Offset bottomRight;
@@ -56,7 +44,8 @@ class RectangleShape extends DrawableShape {
   });
 }
 
-/// Freehand path for drawing
+/// Represents a freehand annotation path.
+/// [points]: List of points (in image coordinates)
 class FreehandShape extends DrawableShape {
   final List<Offset> points;
 
@@ -67,7 +56,8 @@ class FreehandShape extends DrawableShape {
   });
 }
 
-/// Eraser path for erasing
+/// Represents an eraser path (for erasing drawn shapes).
+/// [points]: List of points (in image coordinates)
 class EraserShape extends DrawableShape {
   final List<Offset> points;
 
