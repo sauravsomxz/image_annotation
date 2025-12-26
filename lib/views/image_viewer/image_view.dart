@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:image_annotation/core/app_strings.dart';
 import 'package:image_annotation/viewmodels/annotation_tools_vm.dart';
 import 'package:image_annotation/views/image_viewer/widgets/annotation_toolbar.dart';
+import 'package:image_annotation/views/image_viewer/widgets/color_picker.dart';
+import 'package:image_annotation/views/image_viewer/widgets/drawing_canvas.dart';
 import 'package:provider/provider.dart';
 
 class ImageView extends StatelessWidget {
@@ -29,21 +31,33 @@ class ImageView extends StatelessWidget {
             title: const Text(AppStrings.imageViewTitle),
             centerTitle: false,
           ),
-          body: Column(
+          body: Stack(
             children: [
-              Expanded(
-                child: Container(
-                  color: Colors.black,
-                  alignment: Alignment.center,
-                  child: Hero(
-                    tag: imagePath,
-                    child: InteractiveViewer(
-                      child: Image.asset(imagePath, fit: BoxFit.cover),
+              Container(
+                color: Colors.black,
+                alignment: Alignment.center,
+                child: Stack(
+                  children: [
+                    Hero(
+                      tag: imagePath,
+                      child: InteractiveViewer(
+                        boundaryMargin: const EdgeInsets.all(0),
+                        minScale: 1.0,
+                        maxScale: 5.0,
+                        child: Image.asset(imagePath, fit: BoxFit.contain),
+                      ),
                     ),
-                  ),
+                    const DrawingCanvas(),
+                  ],
                 ),
               ),
-              const AnnotationToolbar(),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: const AnnotationToolbar(),
+              ),
+              Positioned(top: 0, right: 0, child: ColorPicker()),
             ],
           ),
         ),
